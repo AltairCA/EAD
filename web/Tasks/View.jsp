@@ -63,9 +63,9 @@
                                             <%@page import="Models.Task" %>
                                             <%
                                                 ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
-                                                List roles = dbContext.task.getAllTasks();
-                                                if (roles != null) {
-                                                    for (Iterator iter = roles.iterator(); iter.hasNext();) {
+                                                List tasks = dbContext.task.getAllTasks();
+                                                if (tasks != null) {
+                                                    for (Iterator iter = tasks.iterator(); iter.hasNext();) {
                                                         Task elem = (Task) iter.next();
                                                         out.write("<tr><td>" + elem.getTaskID() + "</td><td>" + elem.getDescription()+ "</td><td>" + elem.getEmployeeID()+ "</td></tr>");
                                                     }
