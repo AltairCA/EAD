@@ -14,9 +14,11 @@ public class ApplicationDbContext {
     private static ApplicationDbContext dbContext;
     public dbRole roles;
     public dbTask task;
+    public dbEmployee employees;
     private ApplicationDbContext(){
-        roles = new dbRole();
-        task = new dbTask();
+        this.roles = new dbRole();
+        this.task = new dbTask();
+        this.employees = new dbEmployee();
     }
     public ApplicationDbContext getInstance(){
         if(dbContext == null){
