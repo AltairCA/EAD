@@ -135,7 +135,7 @@
         <!-- Bootstrap 3.3.6 -->
 
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="../dists/js/pages/dashboard.js"></script>
+        
         <!-- AdminLTE for demo purposes -->
         <script src="../dists/js/demo.js"></script>
     </body>

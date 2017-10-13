@@ -51,7 +51,7 @@
         
         <li <% 
                
-               if(pageName.equals("roleCreate") || pageName.equals("roleUpdate")){
+               if(pageName.equals("roleCreate") || pageName.equals("roleUpdate") || pageName.equals("roleView")){
                    out.write("class='active treeview'");
                }else{
                    out.write("class='treeview'");
@@ -71,6 +71,14 @@
           <ul class="treeview-menu">
               <li <% 
                
+               if(pageName.equals("roleView")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Roles/View"><i class="fa fa-circle-o"></i> View</a></li>
+              <li <% 
+               
                if(pageName.equals("roleCreate")){
                    out.write("class='active'");
                }
@@ -80,6 +88,46 @@
               <li <% 
                
                if(pageName.equals("roleUpdate")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Roles/Update"><i class="fa fa-circle-o"></i> Update</a></li>
+          </ul>
+        </li>
+        
+        
+        <li <% 
+               
+               if(pageName.equals("taskCreate") || pageName.equals("taskUpdate")){
+                   out.write("class='active treeview'");
+               }else{
+                   out.write("class='treeview'");
+               }
+              
+            
+              %>
+            
+            >
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Task</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li <% 
+               
+               if(pageName.equals("taskCreate")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Roles/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              <li <% 
+               
+               if(pageName.equals("taskUpdate")){
                    out.write("class='active'");
                }
               
