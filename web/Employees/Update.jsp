@@ -81,6 +81,7 @@
 
                                                         }
                                                     }
+                                                   
                                                 %>
 
                                             </select>
@@ -197,10 +198,10 @@
             $(function() {
 //Initialize Select2 Elements
                 $(".select2").select2();
-                
+
                 $(document.body).on("change", "#emplist", function() {
                     //alert(this.value);
-                    window.location.href = "${pageContext.request.contextPath}/Employees/Update?id="+this.value;
+                    window.location.href = "${pageContext.request.contextPath}/Employees/Update?id=" + this.value;
                 });
             });
         </script>

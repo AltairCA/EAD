@@ -20,6 +20,29 @@ import org.hibernate.Transaction;
  * @author Altair
  */
 public class dbEmployee {
+    public Employee getFirstEmployees(){
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getCurrentSession();
+        try{
+            tx = session.beginTransaction();
+            Employee employees =(Employee) session.createQuery(
+                    "select e from Employee as e"
+            ).uniqueResult();
+            
+            tx.commit();
+            return employees;
+        }catch(RuntimeException e){
+            if(tx != null && tx.isActive()){
+                try{
+                    tx.rollback();
+                }catch(HibernateException el){
+                    System.out.println("Error rolling back transaction");
+                }
+                throw e;
+            }
+        }
+        return null;
+    }
     public List getEmployees(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();

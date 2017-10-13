@@ -6,6 +6,7 @@
 package Servelets.Employee;
 
 import DbContext.ApplicationDbContext;
+import Models.Employee;
 import Models.Task;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,7 +64,15 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Employee em = ApplicationDbContext.getInstance().employees.getFirstEmployees();
         Integer empID = 1;
+        if(em != null){
+            empID = em.getEmployeeID();
+        }else{
+            response.sendRedirect(request.getContextPath()+"/Employees/Create");
+            return;
+        }
+        
         try {
             empID = Integer.parseInt(request.getParameter("id"));
         } catch (Exception ex) {
