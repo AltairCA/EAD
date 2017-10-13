@@ -9,6 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="../plugins/select2/select2.min.css">
         <jsp:include page="../Includes/Head.jsp" />
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -52,7 +53,7 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Select Role</label>
-                                            <select name="role" class="form-control">
+                                            <select name="role"  class="form-control select2" style="width: 100%;">
                                                 <%@page import="DbContext.ApplicationDbContext" %>
                                                 <%@page import="java.util.List" %>
                                                 <%@page import="java.util.Iterator" %>
@@ -63,7 +64,7 @@
                                                     if (roles != null) {
                                                         for (Iterator iter = roles.iterator(); iter.hasNext();) {
                                                             Role elem = (Role) iter.next();
-                                                            out.write("<option value='"+elem.getRoleID()+"'>"+elem.getTitle()+"</option>");
+                                                            out.write("<option value='"+elem.getRoleID()+"'>"+elem.getRoleID()+" - "+elem.getTitle()+"</option>");
                                                         }
                                                     }
                                                 %>
@@ -128,7 +129,7 @@
         <!-- ./wrapper -->
 
         <jsp:include page="../Includes/Body.jsp" />
-
+<script src="../plugins/select2/select2.full.min.js"></script>
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
@@ -138,6 +139,13 @@
         
         <!-- AdminLTE for demo purposes -->
         <script src="../dists/js/demo.js"></script>
+                <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+    
+  });
+</script>
     </body>
 </html>
 
