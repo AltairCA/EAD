@@ -27,7 +27,7 @@ public class dbEmployee {
             tx = session.beginTransaction();
             Employee employees =(Employee) session.createQuery(
                     "select e from Employee as e"
-            ).uniqueResult();
+            ).setMaxResults(1).uniqueResult();
             
             tx.commit();
             return employees;

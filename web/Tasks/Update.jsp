@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DbContext.ApplicationDbContext" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Iterator" %>
+<%@page import="Models.Task" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +24,10 @@
                 <jsp:param name="pname" value="taskUpdate" />
             </jsp:include>
             <!-- Left side column. contains the logo and sidebar -->
-
+            <%
+                int taskID = (Integer) request.getAttribute("taskID");
+                           //int employeeID = 1;
+            %>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -54,22 +61,26 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Select Task</label>
-                                            <select name="task" class="form-control select2" style="width: 100%;">
-                                                <%@page import="DbContext.ApplicationDbContext" %>
-                                                <%@page import="java.util.List" %>
-                                                <%@page import="java.util.Iterator" %>
-                                                <%@page import="Models.Task" %>
+                                            <select name="task" id="tasklist" class="form-control select2" style="width: 100%;">
+
                                                 <%
                                                     ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
                                                     List tasks = dbContext.task.getAllTasks();
+                                                    Task currentTask = null;
                                                     if (tasks != null) {
                                                         for (Iterator iter = tasks.iterator(); iter.hasNext();) {
                                                             Task elem = (Task) iter.next();
-                                                            out.write("<option value='"+elem.getTaskID()+"'>"+elem.getTaskID()+" - "+elem.getDescription()+"</option>");
+                                                            if(taskID == elem.getTaskID()){
+                                                                currentTask = elem;
+                                                                out.write("<option selected value='" + elem.getTaskID() + "'>" + elem.getTaskID() + " - " + elem.getDescription() + "</option>");
+                                                            }else{
+                                                                out.write("<option value='" + elem.getTaskID() + "'>" + elem.getTaskID() + " - " + elem.getDescription() + "</option>");
+                                                            }
+                                                            
                                                         }
                                                     }
                                                 %>
-                                                
+
                                             </select>
                                         </div>
                                         <div class="form-group 
@@ -80,7 +91,7 @@
                                              %>
                                              ">
                                             <label for="exampleInputEmail1">Task Description</label>
-                                            <input type="text" name="description" class="form-control" id="exampleInputEmail1" placeholder="Enter Description">
+                                            <input type="text" name="description" value="<% out.write(currentTask.getDescription()); %>" class="form-control" id="exampleInputEmail1" placeholder="Enter Description">
                                             <span class="help-block">
                                                 <%
                                                     if (request.getAttribute("error") != null) {
@@ -130,22 +141,25 @@
         <!-- ./wrapper -->
 
         <jsp:include page="../Includes/Body.jsp" />
-<script src="../plugins/select2/select2.full.min.js"></script>
+        <script src="../plugins/select2/select2.full.min.js"></script>
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.6 -->
 
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        
+
         <!-- AdminLTE for demo purposes -->
         <script src="../dists/js/demo.js"></script>
-                <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-    
-  });
-</script>
+        <script>
+            $(function() {
+//Initialize Select2 Elements
+                $(".select2").select2();
+                 $(document.body).on("change", "#tasklist", function() {
+                    //alert(this.value);
+                    window.location.href = "${pageContext.request.contextPath}/Tasks/Update?id=" + this.value;
+                });
+            });
+        </script>
     </body>
 </html>

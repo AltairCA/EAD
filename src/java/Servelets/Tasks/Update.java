@@ -7,6 +7,7 @@
 package Servelets.Tasks;
 
 import DbContext.ApplicationDbContext;
+import Models.Task;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -60,6 +61,23 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Task em = ApplicationDbContext.getInstance().task.getFirstTasks();
+        Integer taskID = 1;
+        if(em != null){
+            taskID = em.getTaskID();
+        }else{
+            response.sendRedirect(request.getContextPath()+"/Tasks/Create");
+            return;
+        }
+        
+        try {
+            taskID = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception ex) {
+
+        }
+        request.setAttribute("taskID", taskID);
+
+        
          request.getRequestDispatcher("/Tasks/Update.jsp").forward(request, response);
     }
 
@@ -76,15 +94,17 @@ public class Update extends HttpServlet {
             throws ServletException, IOException {
          String description = request.getParameter("description");
         String taskid = request.getParameter("task");
-        if(!description.isEmpty() && !taskid.isEmpty()){
+        if(!description.isEmpty()){
             ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
             dbContext.task.updateTask(Integer.parseInt(taskid), description);
             request.setAttribute("sucess", "sucess");
-            request.getRequestDispatcher("/Tasks/Update.jsp").forward(request, response);
+            
         }else{
             request.setAttribute("error", "error");
-            request.getRequestDispatcher("/Tasks/Update.jsp").forward(request, response);
+            
         }
+        request.setAttribute("taskID", Integer.parseInt(taskid));
+        request.getRequestDispatcher("/Tasks/Update.jsp").forward(request, response);
     }
 
     /**
