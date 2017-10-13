@@ -1,9 +1,8 @@
 <%-- 
-    Document   : Create
-    Created on : Oct 13, 2017, 4:47:45 PM
+    Document   : Update
+    Created on : Oct 13, 2017, 7:16:03 PM
     Author     : Altair
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +15,7 @@
         <div class="wrapper">
 
             <jsp:include page="../Includes/mainLogo.jsp">
-                <jsp:param name="pname" value="roleCreate" />
+                <jsp:param name="pname" value="roleUpdate" />
             </jsp:include>
             <!-- Left side column. contains the logo and sidebar -->
 
@@ -27,7 +26,7 @@
                 <section class="content-header">
                     <h1>
                         Roles
-                        <small>Create</small>
+                        <small>Update</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="../DashBoard/Dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -45,11 +44,11 @@
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Create New Role</h3>
+                                    <h3 class="box-title">Update Role</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form" action="${pageContext.request.contextPath}/Roles/Create" method="post">
+                                <form role="form" action="${pageContext.request.contextPath}/Roles/Update" method="post">
                                     <div class="box-body">
                                         <div class="form-group 
                                              <%
@@ -121,3 +120,4 @@
         <script src="../dists/js/demo.js"></script>
     </body>
 </html>
+

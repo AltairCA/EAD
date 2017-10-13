@@ -51,7 +51,7 @@
         
         <li <% 
                
-               if(pageName.equals("roleCreate")){
+               if(pageName.equals("roleCreate") || pageName.equals("roleUpdate")){
                    out.write("class='active treeview'");
                }else{
                    out.write("class='treeview'");
@@ -76,7 +76,15 @@
                }
               
             
-              %> ><a href="../Roles/Create.jsp"><i class="fa fa-circle-o"></i> Create</a></li>
+              %> ><a href="../Roles/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              <li <% 
+               
+               if(pageName.equals("roleUpdate")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Roles/Update"><i class="fa fa-circle-o"></i> Update</a></li>
           </ul>
         </li>
         

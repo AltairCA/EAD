@@ -20,7 +20,7 @@ public class ApplicationDbContext {
         this.task = new dbTask();
         this.employees = new dbEmployee();
     }
-    public ApplicationDbContext getInstance(){
+    public static ApplicationDbContext getInstance(){
         if(dbContext == null){
             dbContext = new ApplicationDbContext();
         }
