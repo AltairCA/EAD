@@ -229,5 +229,35 @@ public class dbEmployee {
             }
         }
         return null;
-    } 
+    }
+    public Role getRole(int empID){
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getCurrentSession();
+        try{
+            tx = session.beginTransaction();
+            Employee dbEmp =(Employee) session.createQuery(
+                    "select e from Employee as e where e.employeeID = :eid"
+            ).setParameter("eid", empID).uniqueResult();
+            Role role = dbEmp.getRole();
+            Role temp = null;
+            if(role != null){
+                temp = new Role();
+                temp.setRoleID(role.getRoleID());
+                temp.setTitle(role.getTitle());
+            }
+            
+            tx.commit();
+            return temp;
+        }catch(RuntimeException e){
+            if(tx != null && tx.isActive()){
+                try{
+                    tx.rollback();
+                }catch(HibernateException el){
+                    System.out.println("Error rolling back transaction");
+                }
+                throw e;
+            }
+        }
+        return null;
+    }
 }

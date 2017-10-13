@@ -4,7 +4,12 @@
     Author     : Altair
 --%>
 
+<%@page import="Models.Role"%>
 <%@page import="java.util.Set"%>
+<%@page import="DbContext.ApplicationDbContext" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Iterator" %>
+<%@page import="Models.Employee" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +27,8 @@
             </jsp:include>
             <!-- Left side column. contains the logo and sidebar -->
             <%
-                int employeeID = 2;
+                int employeeID = (Integer) request.getAttribute("empID");
+                //int employeeID = 1;
             %>
 
             <!-- Content Wrapper. Contains page content -->
@@ -57,11 +63,8 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Select Employee</label>
-                                            <select name="role"  class="form-control select2" style="width: 100%;">
-                                                <%@page import="DbContext.ApplicationDbContext" %>
-                                                <%@page import="java.util.List" %>
-                                                <%@page import="java.util.Iterator" %>
-                                                <%@page import="Models.Employee" %>
+                                            <select name="employee" id="emplist"  class="form-control select2" style="width: 100%;">
+
                                                 <%
                                                     ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
                                                     List employees = dbContext.employees.getEmployees();
@@ -112,7 +115,7 @@
                                                         }
                                                     }
                                                     List availableTasks = dbContext.task.getAvailableTasks();
-                                                    if(availableTasks != null){
+                                                    if (availableTasks != null) {
                                                         for (Iterator iter = availableTasks.iterator(); iter.hasNext();) {
                                                             Task task = (Task) iter.next();
                                                             out.write("<option value='" + task.getTaskID() + "'>" + task.getTaskID() + " - " + task.getDescription() + "</option>");
@@ -121,7 +124,24 @@
                                                 %>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Select Employee</label>
+                                            <select name="role"  class="form-control select2" style="width: 100%;">
+                                                <option value="-1">Select ... </option>
+                                                <%
+                                                    Role role = dbContext.employees.getRole(currentEmp.getEmployeeID());
+                                                    if (role != null) {
+                                                        out.write("<option selected value='" + role.getRoleID() + "'>" + role.getRoleID() + " - " + role.getTitle() + "</option>");
+                                                    }
+                                                    List roles = dbContext.roles.getAvailableRoles();
+                                                    for (Iterator iter = roles.iterator(); iter.hasNext();) {
+                                                        Role roledb = (Role) iter.next();
+                                                        out.write("<option value='" + roledb.getRoleID() + "'>" + roledb.getRoleID() + " - " + roledb.getTitle() + "</option>");
+                                                    }
+                                                %>
 
+                                            </select>
+                                        </div>
                                         <%
                                             if (request.getAttribute("sucess") != null) {
                                                 out.write("<div class='callout callout-succes' style='background-color: #00a65a !important;'><h4>Sucess!</h4></div>");
@@ -177,7 +197,11 @@
             $(function() {
 //Initialize Select2 Elements
                 $(".select2").select2();
-
+                
+                $(document.body).on("change", "#emplist", function() {
+                    //alert(this.value);
+                    window.location.href = "${pageContext.request.contextPath}/Employees/Update?id="+this.value;
+                });
             });
         </script>
     </body>

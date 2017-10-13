@@ -6,6 +6,7 @@
 
 package Servelets.Employee;
 
+import DbContext.ApplicationDbContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.tool.hbm2x.StringUtils;
 
 /**
  *
@@ -59,6 +61,15 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Integer empID = 1;
+        try{
+            empID = Integer.parseInt(request.getParameter("id"));
+        }catch(Exception ex){
+            
+        }
+        request.setAttribute("empID", empID);
+        
+        
        request.getRequestDispatcher("/Employees/Update.jsp").forward(request, response);
     }
 
