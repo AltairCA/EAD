@@ -9,5 +9,8 @@
     <property name="hibernate.connection.password">app</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
+    <mapping resource="Mappings/Role.hbm.xml"/>
+    <mapping resource="Mappings/Task.hbm.xml"/>
+    <mapping resource="Mappings/Employee.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
