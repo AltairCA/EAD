@@ -13,5 +13,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <form name="Login" action="${pageContext.request.contextPath}/DashBoard/Dashboard.jsp">
+            <input type="submit" value="Submit" />
+        </form>
     </body>
 </html>
