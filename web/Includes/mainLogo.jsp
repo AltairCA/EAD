@@ -144,6 +144,55 @@
           </ul>
         </li>
         
+        
+        
+        <li <% 
+               
+               if(pageName.equals("empCreate") || pageName.equals("empUpdate") || pageName.equals("empView")){
+                   out.write("class='active treeview'");
+               }else{
+                   out.write("class='treeview'");
+               }
+              
+            
+              %>
+            
+            >
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Employees</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li <% 
+               
+               if(pageName.equals("empView")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Employees/View"><i class="fa fa-circle-o"></i> View</a></li>
+              <li <% 
+               
+               if(pageName.equals("empCreate")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Employees/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              <li <% 
+               
+               if(pageName.equals("empUpdate")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Employees/Update"><i class="fa fa-circle-o"></i> Update</a></li>
+          </ul>
+        </li>
+        
       </ul>
     </section>
     <!-- /.sidebar -->

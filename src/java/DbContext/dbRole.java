@@ -111,4 +111,28 @@ public class dbRole {
             }
         }
     }
+    public Role getRole(int RoleID){
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getCurrentSession();
+        try{
+            tx = session.beginTransaction();
+            Role dbRole =(Role) session.createQuery(
+                    "select r from Role as r where r.roleID = :rid"
+            ).setParameter("rid", RoleID).uniqueResult();
+            
+            
+            tx.commit();
+            return dbRole;
+        }catch(RuntimeException e){
+            if(tx != null && tx.isActive()){
+                try{
+                    tx.rollback();
+                }catch(HibernateException el){
+                    System.out.println("Error rolling back transaction");
+                }
+                throw e;
+            }
+        }
+        return null;
+    }
 }

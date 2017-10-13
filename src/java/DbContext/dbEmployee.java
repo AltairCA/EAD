@@ -49,7 +49,7 @@ public class dbEmployee {
         try{
             tx = session.beginTransaction();
             Employee employee = new Employee();
-            
+            employee.setName(name);
             if(roleId != -1){
                 Role role = (Role) session.createQuery(
                                 "select r from Role as r where r.roleID = :rid"
