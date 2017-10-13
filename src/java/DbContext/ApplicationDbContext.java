@@ -12,8 +12,11 @@ package DbContext;
  */
 public class ApplicationDbContext {
     private static ApplicationDbContext dbContext;
+    public dbRole roles;
+    public dbTask task;
     private ApplicationDbContext(){
-        
+        roles = new dbRole();
+        task = new dbTask();
     }
     public ApplicationDbContext getInstance(){
         if(dbContext == null){
