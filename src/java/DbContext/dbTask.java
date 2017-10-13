@@ -46,7 +46,7 @@ public class dbTask {
         try{
             tx = session.beginTransaction();
             List tasks = session.createQuery(
-                    "select t from Task as t where t.employeeID !=0"
+                    "select t from Task as t where t.employeeID is not null"
             ).list();
             
             tx.commit();
