@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Dashboard
-    Created on : Oct 13, 2017, 2:59:25 PM
+    Document   : Create
+    Created on : Oct 13, 2017, 4:47:45 PM
     Author     : Altair
 --%>
 
@@ -16,19 +16,22 @@
     <div class="wrapper">
         
         <jsp:include page="../Includes/mainLogo.jsp">
-            <jsp:param name="pname" value="Dashboard" />
+            <jsp:param name="pname" value="roleCreate" />
         </jsp:include>
+  <!-- Left side column. contains the logo and sidebar -->
+  
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        Roles
+        <small>Create</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../DashBoard/Dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li><a href="../DashBoard/Dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        
       </ol>
     </section>
 
