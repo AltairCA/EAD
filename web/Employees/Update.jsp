@@ -87,7 +87,7 @@
                                         </div>
                                         <div class="form-group 
                                              <%
-                                                 if (request.getAttribute("titleerror") != null) {
+                                                 if (request.getAttribute("error") != null) {
                                                      out.write("has-error");
                                                  }
                                              %>
@@ -96,7 +96,7 @@
                                             <input type="text" name="name" value="<% out.write(currentEmp.getName()); %>" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
                                             <span class="help-block">
                                                 <%
-                                                    if (request.getAttribute("titleerror") != null) {
+                                                    if (request.getAttribute("error") != null) {
                                                         out.write("Please Enter a Name");
                                                     }
                                                 %>
@@ -125,7 +125,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Select Employee</label>
+                                            <label>Select Role</label>
                                             <select name="role"  class="form-control select2" style="width: 100%;">
                                                 <option value="-1">Select ... </option>
                                                 <%

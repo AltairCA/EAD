@@ -13,7 +13,7 @@ package Models;
 public class Task {
     private int taskID;
     private String description;
-    private int employeeID;
+    private Integer employeeID;
 
     public int getTaskID() {
         return taskID;
@@ -32,11 +32,21 @@ public class Task {
     }
 
     public int getEmployeeID() {
-        return employeeID;
+        if(this.employeeID == null){
+            return 0;
+        }else{
+            return this.employeeID;
+        }
+        
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeID(Integer employeeID) {
+        if(employeeID == null){
+            this.employeeID = 0;
+        }else{
+            this.employeeID = employeeID;
+        }
+        
     }
     
     @Override

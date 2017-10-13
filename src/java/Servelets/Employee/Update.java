@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Servelets.Employee;
 
 import DbContext.ApplicationDbContext;
+import Models.Task;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +42,7 @@ public class Update extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Update</title>");            
+            out.println("<title>Servlet Update</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Update at " + request.getContextPath() + "</h1>");
@@ -62,15 +64,14 @@ public class Update extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer empID = 1;
-        try{
+        try {
             empID = Integer.parseInt(request.getParameter("id"));
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
         request.setAttribute("empID", empID);
-        
-        
-       request.getRequestDispatcher("/Employees/Update.jsp").forward(request, response);
+
+        request.getRequestDispatcher("/Employees/Update.jsp").forward(request, response);
     }
 
     /**
@@ -84,8 +85,40 @@ public class Update extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String[] tasks = request.getParameterValues("tasks");
-       
+        String[] tasks = request.getParameterValues("tasks");
+        String name = request.getParameter("name");
+        String role = request.getParameter("role");
+        String empID = request.getParameter("employee");
+        request.setAttribute("empID", Integer.parseInt(empID));
+        if (name.isEmpty()) {
+            request.setAttribute("error", "error");
+        } else {
+            ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
+            Set dbtasks = dbContext.employees.getTasks(Integer.parseInt(empID));
+            for (Iterator iter = dbtasks.iterator(); iter.hasNext();) {
+                Task elem = (Task) iter.next();
+                dbContext.employees.removeTask(Integer.parseInt(empID), elem.getTaskID());
+
+            }
+            if(tasks != null){
+                for (int x=0;tasks.length > x;x++) {
+                
+                    dbContext.employees.addTask(Integer.parseInt(empID), Integer.parseInt(tasks[x]));
+
+                }
+            }
+            
+            dbContext.employees.updateEmployee(name, Integer.parseInt(empID));
+            if(Integer.parseInt(role) == -1){
+                dbContext.employees.removeRole(Integer.parseInt(empID));
+            }else{
+                dbContext.employees.setRole(Integer.parseInt(empID), Integer.parseInt(role));
+            }
+            
+            request.setAttribute("sucess", "sucess");
+        }
+        request.getRequestDispatcher("/Employees/Update.jsp").forward(request, response);
+
     }
 
     /**
