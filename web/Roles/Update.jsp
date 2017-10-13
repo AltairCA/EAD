@@ -50,6 +50,26 @@
                                 <!-- form start -->
                                 <form role="form" action="${pageContext.request.contextPath}/Roles/Update" method="post">
                                     <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Select Role</label>
+                                            <select name="role" class="form-control">
+                                                <%@page import="DbContext.ApplicationDbContext" %>
+                                                <%@page import="java.util.List" %>
+                                                <%@page import="java.util.Iterator" %>
+                                                <%@page import="Models.Role" %>
+                                                <%
+                                                    ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
+                                                    List roles = dbContext.roles.getAvailableRoles();
+                                                    if (roles != null) {
+                                                        for (Iterator iter = roles.iterator(); iter.hasNext();) {
+                                                            Role elem = (Role) iter.next();
+                                                            out.write("<option value='"+elem.getRoleID()+"'>"+elem.getTitle()+"</option>");
+                                                        }
+                                                    }
+                                                %>
+                                                
+                                            </select>
+                                        </div>
                                         <div class="form-group 
                                              <%
                                                  if (request.getAttribute("titleerror") != null) {
@@ -61,18 +81,18 @@
                                             <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
                                             <span class="help-block">
                                                 <%
-                                                        if (request.getAttribute("titleerror") != null) {
-                                                            out.write("Please Enter a Title");
-                                                        }
+                                                    if (request.getAttribute("titleerror") != null) {
+                                                        out.write("Please Enter a Title");
+                                                    }
                                                 %>
                                             </span>
                                         </div>
                                         <%
-                                             if (request.getAttribute("sucess") != null) {
-                                                            out.write("<div class='callout callout-succes' style='background-color: #00a65a !important;'><h4>Sucess!</h4></div>");
-                                              }
-                                        
-                                         %>
+                                            if (request.getAttribute("sucess") != null) {
+                                                out.write("<div class='callout callout-succes' style='background-color: #00a65a !important;'><h4>Sucess!</h4></div>");
+                                            }
+
+                                        %>
                                     </div>
                                     <!-- /.box-body -->
 
