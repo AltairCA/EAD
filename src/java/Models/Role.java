@@ -29,4 +29,8 @@ public class Role {
     public String getTitle() {
         return title;
     }
+    @Override
+    public String toString(){
+        return "RoleId :"+getRoleID()+" Title: "+getTitle();
+    }
 }
