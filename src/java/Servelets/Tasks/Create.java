@@ -79,12 +79,13 @@ public class Create extends HttpServlet {
             ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
             dbContext.task.createTask(description);
             request.setAttribute("sucess", "sucess");
-            request.getRequestDispatcher("/Tasks/Create.jsp").forward(request, response);
+            
             
         }else{
             request.setAttribute("error", "error");
-            request.getRequestDispatcher("/Tasks/Create.jsp").forward(request, response);
+            
         }
+        request.getRequestDispatcher("/Tasks/Create.jsp").forward(request, response);
     }
 
     /**

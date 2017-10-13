@@ -4,6 +4,10 @@
     Author     : Altair
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DbContext.ApplicationDbContext" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Iterator" %>
+<%@page import="Models.Role" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +23,10 @@
                 <jsp:param name="pname" value="roleUpdate" />
             </jsp:include>
             <!-- Left side column. contains the logo and sidebar -->
-
+            <%
+                int roleID = (Integer) request.getAttribute("roleID");
+                                       //int employeeID = 1;
+            %>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -53,22 +60,26 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Select Role</label>
-                                            <select name="role"  class="form-control select2" style="width: 100%;">
-                                                <%@page import="DbContext.ApplicationDbContext" %>
-                                                <%@page import="java.util.List" %>
-                                                <%@page import="java.util.Iterator" %>
-                                                <%@page import="Models.Role" %>
+                                            <select name="role" id="roleList"  class="form-control select2" style="width: 100%;">
+
                                                 <%
                                                     ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
                                                     List roles = dbContext.roles.getAllRoles();
+                                                    Role currentRole = null;
                                                     if (roles != null) {
                                                         for (Iterator iter = roles.iterator(); iter.hasNext();) {
                                                             Role elem = (Role) iter.next();
-                                                            out.write("<option value='"+elem.getRoleID()+"'>"+elem.getRoleID()+" - "+elem.getTitle()+"</option>");
+                                                            if(elem.getRoleID() == roleID){
+                                                                currentRole = elem;
+                                                                out.write("<option selected value='" + elem.getRoleID() + "'>" + elem.getRoleID() + " - " + elem.getTitle() + "</option>");
+                                                            }else{
+                                                                out.write("<option value='" + elem.getRoleID() + "'>" + elem.getRoleID() + " - " + elem.getTitle() + "</option>");
+                                                            }
+                                                            
                                                         }
                                                     }
                                                 %>
-                                                
+
                                             </select>
                                         </div>
                                         <div class="form-group 
@@ -79,7 +90,7 @@
                                              %>
                                              ">
                                             <label for="exampleInputEmail1">Role Title</label>
-                                            <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
+                                            <input type="text" name="title" value="<% out.write(currentRole.getTitle()); %>" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
                                             <span class="help-block">
                                                 <%
                                                     if (request.getAttribute("titleerror") != null) {
@@ -129,23 +140,26 @@
         <!-- ./wrapper -->
 
         <jsp:include page="../Includes/Body.jsp" />
-<script src="../plugins/select2/select2.full.min.js"></script>
+        <script src="../plugins/select2/select2.full.min.js"></script>
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.6 -->
 
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        
+
         <!-- AdminLTE for demo purposes -->
         <script src="../dists/js/demo.js"></script>
-                <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-    
-  });
-</script>
+        <script>
+            $(function() {
+//Initialize Select2 Elements
+                $(".select2").select2();
+                $(document.body).on("change", "#roleList", function() {
+                    //alert(this.value);
+                    window.location.href = "${pageContext.request.contextPath}/Roles/Update?id=" + this.value;
+                });
+            });
+        </script>
     </body>
 </html>
 

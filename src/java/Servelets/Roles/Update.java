@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DbContext.ApplicationDbContext;
+import Models.Role;
 /**
  *
  * @author Altair
@@ -51,6 +52,21 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Role em = ApplicationDbContext.getInstance().roles.getFirstRoles();
+        Integer roleID = 1;
+        if(em != null){
+            roleID = em.getRoleID();
+        }else{
+            response.sendRedirect(request.getContextPath()+"/Roles/Create");
+            return;
+        }
+        
+        try {
+            roleID = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception ex) {
+
+        }
+        request.setAttribute("roleID", roleID);
         request.getRequestDispatcher("/Roles/Update.jsp").forward(request, response);
     }
 
@@ -67,15 +83,17 @@ public class Update extends HttpServlet {
             throws ServletException, IOException {
         String title = request.getParameter("title");
         String roleid = request.getParameter("role");
-        if(!title.isEmpty() && !roleid.isEmpty()){
+        if(!title.isEmpty()){
             ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
             dbContext.roles.updateRole(Integer.parseInt(roleid), title);
             request.setAttribute("sucess", "sucess");
-            request.getRequestDispatcher("/Roles/Update.jsp").forward(request, response);
+            
         }else{
             request.setAttribute("titleerror", "haserror");
-            request.getRequestDispatcher("/Roles/Update.jsp").forward(request, response);
+            
         }
+        request.setAttribute("roleID", Integer.parseInt(roleid));
+        request.getRequestDispatcher("/Roles/Update.jsp").forward(request, response);
     }
 
     /**

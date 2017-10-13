@@ -72,12 +72,13 @@ public class Create extends HttpServlet {
             ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
             dbContext.roles.createRole(title);
             request.setAttribute("sucess", "sucess");
-            request.getRequestDispatcher("/Roles/Create.jsp").forward(request, response);
+            
             
         }else{
             request.setAttribute("titleerror", "haserror");
-            request.getRequestDispatcher("/Roles/Create.jsp").forward(request, response);
+            
         }
+        request.getRequestDispatcher("/Roles/Create.jsp").forward(request, response);
        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
            

@@ -74,11 +74,12 @@ public class Create extends HttpServlet {
            ApplicationDbContext dbContex= ApplicationDbContext.getInstance();
            dbContex.employees.createEmployee(name, Integer.parseInt(role));
            request.setAttribute("sucess", "sucess");
-            request.getRequestDispatcher("/Employees/Create.jsp").forward(request, response);
+           
         }else{
-            request.setAttribute("titleerror", "error");
-            request.getRequestDispatcher("/Employees/Create.jsp").forward(request, response);
+            request.setAttribute("error", "error");
+            
         }
+        request.getRequestDispatcher("/Employees/Create.jsp").forward(request, response);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
            
