@@ -10,6 +10,7 @@ import Models.Employee;
 import Models.Role;
 import Models.Task;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -204,4 +205,29 @@ public class dbEmployee {
             }
         }
     }
+    public Set getTasks(int empID){
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getCurrentSession();
+        try{
+            tx = session.beginTransaction();
+            Employee dbEmp =(Employee) session.createQuery(
+                    "select e from Employee as e where e.employeeID = :eid"
+            ).setParameter("eid", empID).uniqueResult();
+            Set tasks = dbEmp.getTasks();
+            tasks.size();
+            
+            tx.commit();
+            return tasks;
+        }catch(RuntimeException e){
+            if(tx != null && tx.isActive()){
+                try{
+                    tx.rollback();
+                }catch(HibernateException el){
+                    System.out.println("Error rolling back transaction");
+                }
+                throw e;
+            }
+        }
+        return null;
+    } 
 }
