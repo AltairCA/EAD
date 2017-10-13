@@ -62,7 +62,7 @@
                                             <%@page import="Models.Role" %>
                                             <%
                                                 ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
-                                                List roles = dbContext.roles.getAvailableRoles();
+                                                List roles = dbContext.roles.getAllRoles();
                                                 if (roles != null) {
                                                     for (Iterator iter = roles.iterator(); iter.hasNext();) {
                                                         Role elem = (Role) iter.next();

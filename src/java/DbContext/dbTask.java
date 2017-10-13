@@ -17,13 +17,36 @@ import org.hibernate.Transaction;
  * @author Altair
  */
 public class dbTask {
+    public List getAllTasks(){
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getCurrentSession();
+        try{
+            tx = session.beginTransaction();
+            List tasks = session.createQuery(
+                    "select t from Task as t"
+            ).list();
+            
+            tx.commit();
+            return tasks;
+        }catch(RuntimeException e){
+            if(tx != null && tx.isActive()){
+                try{
+                    tx.rollback();
+                }catch(HibernateException el){
+                    System.out.println("Error rolling back transaction");
+                }
+                throw e;
+            }
+        }
+        return null;
+    }
     public List getAvailableTasks(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
         try{
             tx = session.beginTransaction();
             List tasks = session.createQuery(
-                    "select t from Task as t where t.employeeID is not null"
+                    "select t from Task as t where t.employeeID !=0"
             ).list();
             
             tx.commit();

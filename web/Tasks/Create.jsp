@@ -1,8 +1,11 @@
 <%-- 
-    Document   : Update
-    Created on : Oct 13, 2017, 7:16:03 PM
+    Document   : Create
+    Created on : Oct 13, 2017, 8:30:57 PM
     Author     : Altair
 --%>
+
+
+<!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +18,7 @@
         <div class="wrapper">
 
             <jsp:include page="../Includes/mainLogo.jsp">
-                <jsp:param name="pname" value="roleUpdate" />
+                <jsp:param name="pname" value="taskCreate" />
             </jsp:include>
             <!-- Left side column. contains the logo and sidebar -->
 
@@ -25,8 +28,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Roles
-                        <small>Update</small>
+                        Task
+                        <small>Create</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="../DashBoard/Dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -44,55 +47,35 @@
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Update Role</h3>
+                                    <h3 class="box-title">Create New Task</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form" action="${pageContext.request.contextPath}/Roles/Update" method="post">
+                                <form role="form" action="${pageContext.request.contextPath}/Tasks/Create" method="post">
                                     <div class="box-body">
-                                        <div class="form-group">
-                                            <label>Select Role</label>
-                                            <select name="role" class="form-control">
-                                                <%@page import="DbContext.ApplicationDbContext" %>
-                                                <%@page import="java.util.List" %>
-                                                <%@page import="java.util.Iterator" %>
-                                                <%@page import="Models.Role" %>
-                                                <%
-                                                    ApplicationDbContext dbContext = ApplicationDbContext.getInstance();
-                                                    List roles = dbContext.roles.getAllRoles();
-                                                    if (roles != null) {
-                                                        for (Iterator iter = roles.iterator(); iter.hasNext();) {
-                                                            Role elem = (Role) iter.next();
-                                                            out.write("<option value='"+elem.getRoleID()+"'>"+elem.getTitle()+"</option>");
-                                                        }
-                                                    }
-                                                %>
-                                                
-                                            </select>
-                                        </div>
                                         <div class="form-group 
                                              <%
-                                                 if (request.getAttribute("titleerror") != null) {
+                                                 if (request.getAttribute("error") != null) {
                                                      out.write("has-error");
                                                  }
                                              %>
                                              ">
-                                            <label for="exampleInputEmail1">Role Title</label>
-                                            <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
+                                            <label for="exampleInputEmail1">Task Description</label>
+                                            <input type="text" name="description" class="form-control" id="exampleInputEmail1" placeholder="Enter Description">
                                             <span class="help-block">
                                                 <%
-                                                    if (request.getAttribute("titleerror") != null) {
-                                                        out.write("Please Enter a Title");
-                                                    }
+                                                        if (request.getAttribute("error") != null) {
+                                                            out.write("Please Enter a Description");
+                                                        }
                                                 %>
                                             </span>
                                         </div>
                                         <%
-                                            if (request.getAttribute("sucess") != null) {
-                                                out.write("<div class='callout callout-succes' style='background-color: #00a65a !important;'><h4>Sucess!</h4></div>");
-                                            }
-
-                                        %>
+                                             if (request.getAttribute("sucess") != null) {
+                                                            out.write("<div class='callout callout-succes' style='background-color: #00a65a !important;'><h4>Sucess!</h4></div>");
+                                              }
+                                        
+                                         %>
                                     </div>
                                     <!-- /.box-body -->
 
@@ -140,4 +123,3 @@
         <script src="../dists/js/demo.js"></script>
     </body>
 </html>
-

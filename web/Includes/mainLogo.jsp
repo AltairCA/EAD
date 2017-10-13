@@ -99,7 +99,7 @@
         
         <li <% 
                
-               if(pageName.equals("taskCreate") || pageName.equals("taskUpdate")){
+               if(pageName.equals("taskCreate") || pageName.equals("taskUpdate") || pageName.equals("taskView")){
                    out.write("class='active treeview'");
                }else{
                    out.write("class='treeview'");
@@ -111,7 +111,7 @@
             >
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Task</span>
+            <span>Tasks</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -119,12 +119,20 @@
           <ul class="treeview-menu">
               <li <% 
                
+               if(pageName.equals("taskView")){
+                   out.write("class='active'");
+               }
+              
+            
+              %> ><a href="../Tasks/View"><i class="fa fa-circle-o"></i> View</a></li>
+              <li <% 
+               
                if(pageName.equals("taskCreate")){
                    out.write("class='active'");
                }
               
             
-              %> ><a href="../Roles/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              %> ><a href="../Tasks/Create"><i class="fa fa-circle-o"></i> Create</a></li>
               <li <% 
                
                if(pageName.equals("taskUpdate")){
@@ -132,7 +140,7 @@
                }
               
             
-              %> ><a href="../Roles/Update"><i class="fa fa-circle-o"></i> Update</a></li>
+              %> ><a href="../Tasks/Update"><i class="fa fa-circle-o"></i> Update</a></li>
           </ul>
         </li>
         

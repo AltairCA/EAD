@@ -18,6 +18,29 @@ import org.hibernate.Transaction;
  * @author Altair
  */
 public class dbRole {
+    public List getAllRoles(){
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getCurrentSession();
+        try{
+            tx = session.beginTransaction();
+            List roles = session.createQuery(
+                    "select r from Role as r"
+            ).list();
+            
+            tx.commit();
+            return roles;
+        }catch(RuntimeException e){
+            if(tx != null && tx.isActive()){
+                try{
+                    tx.rollback();
+                }catch(HibernateException el){
+                    System.out.println("Error rolling back transaction");
+                }
+                throw e;
+            }
+        }
+        return null;
+    }
     public List getAvailableRoles(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
