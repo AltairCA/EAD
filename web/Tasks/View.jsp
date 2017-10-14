@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Tasks View</title>
         <jsp:include page="../Includes/Head.jsp" />
         <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     </head>

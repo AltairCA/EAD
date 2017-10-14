@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Tasks Update</title>
         <link rel="stylesheet" href="../plugins/select2/select2.min.css">
         <jsp:include page="../Includes/Head.jsp" />
     </head>

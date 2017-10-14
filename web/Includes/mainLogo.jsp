@@ -62,7 +62,7 @@
             
             >
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-key"></i>
             <span>Roles</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -110,7 +110,7 @@
             
             >
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-tasks"></i>
             <span>Tasks</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -159,7 +159,7 @@
             
             >
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-users"></i>
             <span>Employees</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
