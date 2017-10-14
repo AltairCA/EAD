@@ -6,12 +6,28 @@
 
 package Models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  *
  * @author Altair
  */
-public class Role {
+@Entity(name="Role")
+@Table(name="ROLE")
+public class Role implements java.io.Serializable {
+    @Id
+    @GenericGenerator(name="Altair", strategy="increment")
+    @GeneratedValue(generator="Altair")
+    @Column(name="ROLEID")
     private int roleID;
+    
+    @Column(name="TITLE")
     private String title;
 
     public void setRoleID(int roleID) {

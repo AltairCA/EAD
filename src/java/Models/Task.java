@@ -6,13 +6,31 @@
 
 package Models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  *
  * @author Altair
  */
-public class Task {
+@Entity(name="Task")
+@Table(name="TASK")
+public class Task implements java.io.Serializable {
+    @Id
+    @GenericGenerator(name="Altair", strategy="increment")
+    @GeneratedValue(generator="Altair")
+    @Column(name="TASKID")
     private int taskID;
+    
+    @Column(name="DESCRIPTION")
     private String description;
+    
+    @Column(name="EMPLOYEEID")
     private Integer employeeID;
 
     public int getTaskID() {
