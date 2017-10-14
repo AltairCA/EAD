@@ -16,10 +16,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- *
+ * Handles all the query operations regarding to the employee class
  * @author Altair
  */
 public class dbEmployee {
+    /**
+     * Get the first record from the data source
+     * @return Employee object
+     */
     public Employee getFirstEmployees(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -43,6 +47,10 @@ public class dbEmployee {
         }
         return null;
     }
+    /**
+     * Get all the employees
+     * @return List of employees
+     */
     public List getEmployees(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -66,7 +74,11 @@ public class dbEmployee {
         }
         return null;
     }
-    
+    /**
+     * Create a new employee
+     * @param name employee Name
+     * @param roleId 
+     */
     public void createEmployee(String name,int roleId){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
