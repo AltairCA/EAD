@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- *
+ * Mapping class for the Role Table
  * @author Altair
  */
 @Entity(name="Role")

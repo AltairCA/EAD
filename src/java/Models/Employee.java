@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 /**
- *
+ * Mapping class for the Employee table
  * @author Altair
  */
 @Entity(name="Employee")

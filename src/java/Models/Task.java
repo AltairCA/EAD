@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- *
+ * Mapping class for the Task table
  * @author Altair
  */
 @Entity(name="Task")
