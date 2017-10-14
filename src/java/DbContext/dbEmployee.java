@@ -106,7 +106,11 @@ public class dbEmployee {
             }
         }
     }
-    
+    /**
+     * Update the employee
+     * @param name
+     * @param empID 
+     */
     public void updateEmployee(String name,int empID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -131,7 +135,10 @@ public class dbEmployee {
             }
         }
     }
-    
+    /**
+     * remove role from the employee
+     * @param empID 
+     */
     public void removeRole(int empID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -156,7 +163,11 @@ public class dbEmployee {
             }
         }
     }
-    
+    /**
+     * Set role to a employee
+     * @param empID
+     * @param roleId 
+     */
     public void setRole(int empID,int roleId){
         removeRole(empID);
         Transaction tx = null;
@@ -184,7 +195,11 @@ public class dbEmployee {
             }
         }
     }
-    
+    /**
+     * Remove a task from employee
+     * @param empID
+     * @param taskID 
+     */
     public void removeTask(int empID,int taskID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -212,7 +227,11 @@ public class dbEmployee {
             }
         }
     }
-    
+    /**
+     * Add task to a employee
+     * @param empID
+     * @param taskID 
+     */
     public void addTask(int empID,int taskID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -240,6 +259,11 @@ public class dbEmployee {
             }
         }
     }
+    /**
+     * Get Task from the employee
+     * @param empID
+     * @return 
+     */
     public Set getTasks(int empID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -265,6 +289,11 @@ public class dbEmployee {
         }
         return null;
     }
+    /**
+     * Get role from the employee
+     * @param empID
+     * @return 
+     */
     public Role getRole(int empID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
