@@ -42,7 +42,7 @@
              }
             %>
             >
-            <a href="../DashBoard/Dashboard.jsp">
+            <a href="../DashBoard/Dashboard">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             
           </a>

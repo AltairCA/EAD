@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <jsp:include page="../Includes/Head.jsp" />
+        <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -30,7 +31,7 @@
                         <small>View</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="../DashBoard/Dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="../DashBoard/Dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 
                     </ol>
                 </section>
@@ -39,10 +40,10 @@
                 <section class="content">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-1">
 
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Employees</h3>
@@ -53,7 +54,7 @@
                                             <tr>
                                                 <th>Employee Id</th>
                                                 <th>Name</th>
-
+                                                <th>Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,7 +68,8 @@
                                                 if (employees != null) {
                                                     for (Iterator iter = employees.iterator(); iter.hasNext();) {
                                                         Employee elem = (Employee) iter.next();
-                                                        out.write("<tr><td>" + elem.getEmployeeID()+ "</td><td>" + elem.getName()+ "</td></tr>");
+                                                        out.write("<tr><td>" + elem.getEmployeeID()+ "</td><td>" + elem.getName()+ "</td>");
+                                                        out.write("<td><button type='button' onclick='onClick("+elem.getEmployeeID()+")' class='btn btn-block btn-primary btn-xs'>Update</button></td></tr>");
                                                     }
                                                 }
                                             %>
@@ -76,7 +78,7 @@
                                             <tr>
                                                 <th>Employee Id</th>
                                                 <th>Name</th>
-
+                                                <th>Update</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -85,7 +87,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
 
                         </div>
 
@@ -127,6 +129,9 @@
             $(function() {
                 $("#example1").DataTable();
             });
+            function onClick(url){
+                window.location.href = "${pageContext.request.contextPath}/Employees/Update?id=" + url;
+            }
         </script>
     </body>
 </html>

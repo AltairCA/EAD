@@ -37,7 +37,7 @@
                         <small>Update</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="../DashBoard/Dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="../DashBoard/Dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 
                     </ol>
                 </section>

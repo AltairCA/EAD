@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <jsp:include page="../Includes/Head.jsp" />
+        <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -39,10 +40,10 @@
                 <section class="content">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-1">
 
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Tasks</h3>
@@ -54,6 +55,7 @@
                                                 <th>Task Id</th>
                                                 <th>Description</th>
                                                 <th>Employee ID</th>
+                                                <th>Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,7 +69,8 @@
                                                 if (tasks != null) {
                                                     for (Iterator iter = tasks.iterator(); iter.hasNext();) {
                                                         Task elem = (Task) iter.next();
-                                                        out.write("<tr><td>" + elem.getTaskID() + "</td><td>" + elem.getDescription()+ "</td><td>" + elem.getEmployeeID()+ "</td></tr>");
+                                                        out.write("<tr><td>" + elem.getTaskID() + "</td><td>" + elem.getDescription() + "</td><td>" + elem.getEmployeeID() + "</td>");
+                                                        out.write("<td><button type='button' onclick='onClick(" + elem.getTaskID() + ")' class='btn btn-block btn-primary btn-xs'>Update</button></td></tr>");
                                                     }
                                                 }
                                             %>
@@ -77,7 +80,7 @@
                                                 <th>Task Id</th>
                                                 <th>Description</th>
                                                 <th>Employee ID</th>
-
+                                                <th>Update</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -86,7 +89,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
 
                         </div>
 
@@ -119,7 +122,7 @@
         <!-- Bootstrap 3.3.6 -->
 
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        
+
         <!-- AdminLTE for demo purposes -->
         <script src="../dists/js/demo.js"></script>
         <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -128,6 +131,9 @@
             $(function() {
                 $("#example1").DataTable();
             });
+            function onClick(url) {
+                window.location.href = "${pageContext.request.contextPath}/Tasks/Update?id=" + url;
+            }
         </script>
     </body>
 </html>
