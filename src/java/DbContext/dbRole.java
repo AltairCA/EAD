@@ -14,10 +14,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- *
+ * Handles all the query operations regarding to the Role class
  * @author Altair
  */
 public class dbRole {
+    /**
+     * get the first role from the dataset
+     * @return Role
+     */
     public Role getFirstRoles(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -41,6 +45,10 @@ public class dbRole {
         }
         return null;
     }
+    /**
+     * Get all the roles
+     * @return List
+     */
     public List getAllRoles(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -64,6 +72,10 @@ public class dbRole {
         }
         return null;
     }
+    /**
+     * get the roles that are not assign to the employee
+     * @return List
+     */
     public List getAvailableRoles(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -87,7 +99,10 @@ public class dbRole {
         }
         return null;
     }
-    
+    /**
+     * Create a new role
+     * @param title 
+     */
     public void createRole(String title){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -109,7 +124,11 @@ public class dbRole {
             }
         }
     }
-    
+    /**
+     * Update existing roles
+     * @param RoleID
+     * @param title 
+     */
     public void updateRole(int RoleID,String title){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -134,6 +153,11 @@ public class dbRole {
             }
         }
     }
+    /**
+     * get a role by using role id
+     * @param RoleID
+     * @return Role
+     */
     public Role getRole(int RoleID){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();

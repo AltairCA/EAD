@@ -13,10 +13,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- *
+ * Handles all the query operations regarding to the Task class
  * @author Altair
  */
 public class dbTask {
+    /**
+     * Get the first task from the database
+     * @return Task
+     */
     public Task getFirstTasks(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -40,6 +44,10 @@ public class dbTask {
         }
         return null;
     }
+    /**
+     * Get all the tasks
+     * @return List
+     */
     public List getAllTasks(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -63,6 +71,10 @@ public class dbTask {
         }
         return null;
     }
+    /**
+     * get the all the tasks that are not assigned to a employee
+     * @return List
+     */
     public List getAvailableTasks(){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -86,7 +98,11 @@ public class dbTask {
         }
         return null;
     }
-    
+    /**
+     * Update Task
+     * @param taskId
+     * @param description 
+     */
     public void updateTask(int taskId,String description){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
@@ -111,7 +127,10 @@ public class dbTask {
             }
         }
     }
-    
+    /**
+     * create Task
+     * @param description 
+     */
     public void createTask(String description){
         Transaction tx = null;
         Session session = SessionFactoryUtil.getCurrentSession();
