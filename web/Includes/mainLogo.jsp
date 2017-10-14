@@ -76,7 +76,7 @@
                }
               
             
-              %> ><a href="../Roles/View"><i class="fa fa-circle-o"></i> View</a></li>
+              %> ><a href="../Roles/View"><i class="fa fa-circle-o text-aqua"></i> View</a></li>
               <li <% 
                
                if(pageName.equals("roleCreate")){
@@ -84,7 +84,7 @@
                }
               
             
-              %> ><a href="../Roles/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              %> ><a href="../Roles/Create"><i class="fa fa-circle-o text-yellow"></i> Create</a></li>
               <li <% 
                
                if(pageName.equals("roleUpdate")){
@@ -92,7 +92,7 @@
                }
               
             
-              %> ><a href="../Roles/Update"><i class="fa fa-circle-o"></i> Update</a></li>
+              %> ><a href="../Roles/Update"><i class="fa fa-circle-o text-red"></i> Update</a></li>
           </ul>
         </li>
         
@@ -124,7 +124,7 @@
                }
               
             
-              %> ><a href="../Tasks/View"><i class="fa fa-circle-o"></i> View</a></li>
+              %> ><a href="../Tasks/View"><i class="fa fa-circle-o text-aqua"></i> View</a></li>
               <li <% 
                
                if(pageName.equals("taskCreate")){
@@ -132,7 +132,7 @@
                }
               
             
-              %> ><a href="../Tasks/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              %> ><a href="../Tasks/Create"><i class="fa fa-circle-o text-yellow"></i> Create</a></li>
               <li <% 
                
                if(pageName.equals("taskUpdate")){
@@ -140,7 +140,7 @@
                }
               
             
-              %> ><a href="../Tasks/Update"><i class="fa fa-circle-o"></i> Update</a></li>
+              %> ><a href="../Tasks/Update"><i class="fa fa-circle-o text-red"></i> Update</a></li>
           </ul>
         </li>
         
@@ -173,7 +173,7 @@
                }
               
             
-              %> ><a href="../Employees/View"><i class="fa fa-circle-o"></i> View</a></li>
+              %> ><a href="../Employees/View"><i class="fa fa-circle-o text-aqua"></i> View</a></li>
               <li <% 
                
                if(pageName.equals("empCreate")){
@@ -181,7 +181,7 @@
                }
               
             
-              %> ><a href="../Employees/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+              %> ><a href="../Employees/Create"><i class="fa fa-circle-o text-yellow"></i> Create</a></li>
               <li <% 
                
                if(pageName.equals("empUpdate")){
@@ -189,7 +189,7 @@
                }
               
             
-              %> ><a href="../Employees/Update"><i class="fa fa-circle-o"></i> Update</a></li>
+              %> ><a href="../Employees/Update"><i class="fa fa-circle-o text-red"></i> Update</a></li>
           </ul>
         </li>
         
